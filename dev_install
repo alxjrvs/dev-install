@@ -31,13 +31,17 @@ fi
 
 
 echo "--- Installing Apps ---"
+touch Brewfile
+curl https://raw.githubusercontent.com/alxjrvs/dev-install/master/Brewfile >> Brewfile
 brew tap Homebrew/bundle
 brew bundle || echo "Apps installed! Note any errors." 
+rm Brewfile
 
 echo "--- Install Oh My ZSH ---"
 curl -L https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh | sh
 
 echo "--- Update ~/.zshrc and ~/.bash_profile ---"
+touch ~/.bash_profile
 cat environment >> ~/.zshrc
 cat environment >> ~/.bash_profile
 source ~/.bash_profile
