@@ -50,7 +50,11 @@ source ~/.bash_profile
 echo "--- Install Rubies ---"
 RubyVersions=( '2.2.3' );
 for version in "${RubyVersions[@]}"; do
-  ruby-install ruby $version
+  if [[ $string == *$version* ]]; then
+    echo "Already Installed $version"
+  else
+    ruby-install ruby $version
+  fi
 done
 
 default_ruby=${RubyVersions[0]}
