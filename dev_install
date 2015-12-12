@@ -65,9 +65,12 @@ echo $default_ruby > ~/.ruby-version
 
 echo "--- Install Gems ---"
 touch ~/.gemrc
+touch Gemfile
+curl https://raw.githubusercontent.com/alxjrvs/dev-install/master/Gemfile >> Gemfile
 curl https://raw.githubusercontent.com/alxjrvs/dev-install/master/.gemrc >> ~/.gemrc
 gem install bundler
 bundle install
+rm Gemfile
 
 echo "--- Developer Tools Install Script Complete! ---"
 echo "Restart your terminal to load the new changes."
