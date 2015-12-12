@@ -59,7 +59,8 @@ chruby $default_ruby
 echo $default_ruby > ~/.ruby-version
 
 echo "--- Install Gems ---"
-cp .gemrc ~/.gemrc
+touch ~/.gemrc
+curl https://raw.githubusercontent.com/alxjrvs/dev-install/master/.gemrc >> ~/.gemrc
 gem install bundler
 bundle install
 
