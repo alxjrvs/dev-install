@@ -4,7 +4,6 @@ brew "heroku-toolbelt"
 brew "imagemagick"
 brew "ruby-install"
 brew "node"
-brew "phantomjs"
 
 tap "caskroom/cask"
 brew "brew-cask"
