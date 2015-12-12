@@ -13,17 +13,26 @@ if [ $? -ne 0 ]; then  # need to fix this check or remove
   exit 1
 fi
 
-echo "--- Make /bin/zsh the default shell ---"
-read -s -p "Password: " password
-echo
-echo $password | sudo -S chsh -s /bin/zsh $username
+if [[ $( basename $SHELL ) = "zsh" ]]; then
+  echo "-- Your shell is already set to ZSH!"
+else
+  echo "--- Making /bin/zsh the default shell ---"
+  read -s -p "Password: " password
+  echo
+  echo $password | sudo -S chsh -s /bin/zsh $username
+fi
 
-echo "--- Install Homebrew ---"
-ruby -e "$(curl -fsSL https://raw.github.com/Homebrew/install/master/install)"
+if which brew >/dev/null; then
+  echo "-- Homebrew Already Installed!"
+else
+  echo "-- Installing Homebrew ..."
+  ruby -e "$(curl -fsSL https://raw.github.com/Homebrew/install/master/install)"
+fi
 
-echo "--- Install Apps ---"
+
+echo "--- Installing Apps ---"
 brew tap Homebrew/bundle
-brew bundle
+brew bundle || echo "Apps installed! Note any errors." 
 
 echo "--- Install Oh My ZSH ---"
 curl -L https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh | sh
@@ -34,7 +43,7 @@ cat environment >> ~/.bash_profile
 source ~/.bash_profile
 
 echo "--- Install Rubies ---"
-RubyVersions=( '2.0.0-p647' '2.1.7' '2.2.3' );
+RubyVersions=( '2.2.3' );
 for version in "${RubyVersions[@]}"; do
   ruby-install ruby $version
 done
