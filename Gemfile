@@ -2,8 +2,6 @@ source "http://rubygems.org"
 
 gem "et"
 gem "gist"
-gem "hub"
-gem "make_it_so"
 gem "pry"
 gem "rails"
 gem "rspec"
