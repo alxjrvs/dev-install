@@ -40,10 +40,11 @@ rm Brewfile
 echo "--- Install Oh My ZSH ---"
 curl -L https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh | sh
 
+environment=$(curl https://raw.githubusercontent.com/alxjrvs/dev-install/master/environment)
 echo "--- Update ~/.zshrc and ~/.bash_profile ---"
 touch ~/.bash_profile
-cat environment >> ~/.zshrc
-cat environment >> ~/.bash_profile
+echo $environment >> ~/.zshrc
+echo $environment >> ~/.bash_profile
 source ~/.bash_profile
 
 echo "--- Install Rubies ---"
