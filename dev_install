@@ -47,20 +47,16 @@ echo $environment >> ~/.zshrc
 echo $environment >> ~/.bash_profile
 source ~/.bash_profile
 
-echo "--- Install Rubies ---"
-RubyVersions=( '2.2.3' );
-for version in "${RubyVersions[@]}"; do
-  if [[ $(chruby) == *$version* ]]; then
-    echo "Already Installed $version"
-  else
-    echo "BEEP BOOP DID A BAD"
-    # ruby-install ruby $version
-  fi
-done
+version=( '2.2.3' );
+echo "--- Install Ruby $version ---"
+if [[ $(chruby) == *$version* ]]; then
+  echo "Already Installed $version"
+else
+  ruby-install ruby $version
+fi
 
-default_ruby=${RubyVersions[0]}
-echo "--- Set the Default Ruby Version to $default_ruby ---"
-chruby $default_ruby
+echo "--- Set the Default Ruby Version to $version ---"
+chruby $version
 echo $default_ruby > ~/.ruby-version
 
 echo "--- Install Gems ---"
@@ -71,6 +67,7 @@ curl https://raw.githubusercontent.com/alxjrvs/dev-install/master/.gemrc >> ~/.g
 gem install bundler
 bundle install
 rm Gemfile
+rm Gemfile.lock
 
 echo "--- Developer Tools Install Script Complete! ---"
 echo "Restart your terminal to load the new changes."
