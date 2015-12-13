@@ -1,3 +1,4 @@
+brew "zsh"
 brew "chruby"
 brew "git"
 brew "heroku-toolbelt"

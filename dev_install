@@ -13,15 +13,6 @@ if [ $? -ne 0 ]; then  # need to fix this check or remove
   exit 1
 fi
 
-if [[ $( basename $SHELL ) = "zsh" ]]; then
-  echo "-- Your shell is already set to ZSH!"
-else
-  echo "--- Making /bin/zsh the default shell ---"
-  read -s -p "Password: " password
-  echo
-  echo $password | sudo -S chsh -s /bin/zsh $username
-fi
-
 if which brew >/dev/null; then
   echo "-- Homebrew Already Installed!"
 else
@@ -36,6 +27,15 @@ curl https://raw.githubusercontent.com/alxjrvs/dev-install/master/Brewfile >> Br
 brew tap Homebrew/bundle
 brew bundle || echo "Apps installed! Note any errors." 
 rm Brewfile
+
+if [[ $( basename $SHELL ) = "zsh" ]]; then
+  echo "-- Your shell is already set to ZSH!"
+else
+  echo "--- Making /bin/zsh the default shell ---"
+  read -s -p "Password: " password
+  echo
+  echo $password | sudo -S chsh -s /bin/zsh $username
+fi
 
 echo "--- Install Oh My ZSH ---"
 curl -L https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh | sh
