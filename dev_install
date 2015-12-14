@@ -71,3 +71,5 @@ rm Gemfile.lock
 
 echo "--- Developer Tools Install Script Complete! ---"
 echo "Restart your terminal to load the new changes."
+echo "Run this command to check your machine for dependencies:" 
+echo "curl https://raw.githubusercontent.com/alxjrvs/dev-install/master/dev_check | bash"
