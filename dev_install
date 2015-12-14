@@ -71,4 +71,3 @@ rm Gemfile.lock
 
 echo "--- Developer Tools Install Script Complete! ---"
 echo "Restart your terminal to load the new changes."
-echo "Then, run './dev_check' to verify the installation."
